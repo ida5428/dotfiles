@@ -1,0 +1,74 @@
+setopt AUTO_CD           # Type dir name to cd into it
+setopt AUTO_PUSHD        # Keep a stack of visited dirs
+setopt CORRECT           # Auto correct minor typos
+setopt NO_CASE_GLOB      # Case-insensitive globbing
+setopt HIST_IGNORE_DUPS  # No duplicate history
+
+# Enable completion
+autoload -Uz compinit
+compinit -u
+
+# Custom Enter key handler
+function handle-enter-or-reset-prompt() {
+  # Get the current command line buffer
+  local input=${BUFFER}
+
+  # Trim whitespace
+  if [[ -z "${input//[[:space:]]/}" ]]; then
+    # Input is empty or whitespace — clear the line and redraw prompt
+    zle reset-prompt
+    BUFFER=""
+    CURSOR=0
+  else
+    # Input is valid — accept the line (run the command)
+    zle accept-line
+  fi
+}
+
+# Create a Zsh widget for it
+zle -N handle-enter-or-reset-prompt
+
+# Bind Enter/Return key to the new widget
+bindkey '^M' handle-enter-or-reset-prompt  # ^M = Enter/Return
+
+# Initialise Starship Prompt
+eval "$(starship init zsh)"
+
+# Source zsh-autosuggestions
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#b0b0b0'
+
+# Source zsh-syntax-highlighting
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Completion cache
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+
+# Add JDK PATH environment variable
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
+
+
+pokemon_sprite() {
+   # Set the path to your sprite folder
+   sprite_folder="$HOME/pokemon_sprites"
+
+   # Get all files in the sprite folder
+   sprite_files=("$sprite_folder"/*)
+
+   # Generate a random index
+   count=${#sprite_files[@]}
+   if (( count == 0 )); then
+      echo "No sprites found in $sprite_folder"
+      return 1
+   fi
+   random_index=$(( RANDOM % count ))
+
+   # Print a blank line and then the selected sprite
+   echo ''
+   cat "${sprite_files[$random_index]}"
+}
+
+# Run the function
+pokemon_sprite

@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# Centered line printer
+center() {
+   local text="$1"
+   local termwidth
+   termwidth=$(tput cols)
+   local clean_text
+   clean_text=$(echo -e "$text" | sed 's/\x1b\[[0-9;]*m//g')
+   local padding=$(((termwidth - ${#clean_text}) / 2))
+   printf "%*s%s\n" "$padding" "" "$text"
+}
+
+# Vertical padding to roughly center content
+vpad() {
+   local lines="$1"
+   local height
+   height=$(tput lines)
+   local padding=$(((height - lines - 2) / 2)) # -2 to account for bottom prompt
+   for _ in $(seq 1 "$padding"); do echo ""; done
+}
+
+# Clear screen
+clear
+
+# Draw welcome UI
+vpad 9
+center "$(printf "\033[1;35m██╗██████╗                  █████╗ \033[0m")"
+center "$(printf "\033[1;35m██║██╔══██╗                ██╔══██╗\033[0m")"
+center "$(printf "\033[1;35m██║██║  ██║                ███████║\033[0m")"
+center "$(printf "\033[1;35m██║██║  ██║                ██╔══██║\033[0m")"
+center "$(printf "\033[1;35m██║██████╔╝███████╗███████╗██║  ██║\033[0m")"
+center "$(printf "\033[1;35m╚═╝╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝\033[0m")"
+echo ""
+center "$(printf "  \033[1;92m$USER\033[0m")"
+echo ""
+center "$(printf "  fish  \033[0;90m[:f]\033[0m       Neovim  \033[0;90m[:nv]\033[0m")"
+center "$(printf "  zsh   \033[0;90m[:z]\033[0m      󰇥 yazi    \033[0;90m[:yz]\033[0m")"
+
+# Prompt loop
+while true; do
+   # Show prompt on second-to-last line to avoid scroll
+   prompt_line=$(($(tput lines) - 2))
+   tput cup "$prompt_line" 0
+   tput el
+   printf "\033[1;90m:\033[0m "
+   read -r input
+
+   case "$input" in
+   f) clear && exit ;;
+   z) clear && exec zsh ;;
+   nv) clear && exec nvim ;;
+   yz) clear && exec yazi ;;
+   *)
+      # Clear the input line without causing scroll
+      tput cup "$prompt_line" 0
+      tput el
+      ;;
+   esac
+done
