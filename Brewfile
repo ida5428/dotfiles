@@ -24,7 +24,7 @@ cask "font-jetbrains-mono-nerd-font"
 # cask "antinote"
 
 # --- Productivity & Utilities ---
-brew "battery-toolkit"
+brew "mhaeuser/mhaeuser/battery-toolkit"
 cask "arc"
 cask "raycast"
 cask "last-window-quits"
