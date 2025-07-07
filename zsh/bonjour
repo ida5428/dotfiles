@@ -1,0 +1,55 @@
+#!/bin/zsh
+
+# Centered text printer
+center() {
+   local text="$1"
+   local termwidth=$(tput cols)
+   local clean_text=$(echo -e "$text" | sed 's/\x1b\[[0-9;]*m//g')
+   local padding=$(((termwidth - ${#clean_text}) / 2))
+   printf "%*s%s\n" "$padding" "" "$text"
+}
+
+# Vertical padding
+vpad() {
+   local lines="$1"
+   local height=$(tput lines)
+   local padding=$(((height - lines - 2) / 2))
+   for _ in $(seq 1 "$padding"); do echo ""; done
+}
+
+clear
+vpad 9
+center "$(printf "\033[1;35m██╗██████╗                  █████╗ \033[0m")"
+center "$(printf "\033[1;35m██║██╔══██╗                ██╔══██╗\033[0m")"
+center "$(printf "\033[1;35m██║██║  ██║                ███████║\033[0m")"
+center "$(printf "\033[1;35m██║██║  ██║                ██╔══██║\033[0m")"
+center "$(printf "\033[1;35m██║██████╔╝███████╗███████╗██║  ██║\033[0m")"
+center "$(printf "\033[1;35m╚═╝╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝\033[0m")"
+echo ""
+center "$(printf "  \033[1;92m$USER\033[0m")"
+echo ""
+center "$(printf "  \033[0;95mfish\033[0m \033[0;96m[:f]\033[0m     \033[0;95mneovim\033[0m \033[0;96m[:nv]\033[0m")"
+center "$(printf "  \033[0;95mzsh \033[0m \033[0;96m[:z]\033[0m    󰇥 \033[0;95myazi  \033[0m \033[0;96m[:yz]\033[0m")"
+center "$(printf " 󰓇 \033[0;95mspotify\033[0m \033[0;96m[:sp]\033[0m")"
+
+# Input loop
+while true; do
+   prompt_line=$(($(tput lines) - 2))
+   tput cup "$prompt_line" 0
+   tput el
+   printf ": "
+   read -r input
+
+   case "$input" in
+   f) clear && exec env ZSH_GREETER_SHOWN=1 fish ;;
+   z) clear && exec env ZSH_GREETER_SHOWN=1 zsh ;;
+   nv) clear && exec env ZSH_GREETER_SHOWN=1 nvim ;;
+   yz) clear && exec env ZSH_GREETER_SHOWN=1 yazi ;;
+   sp) clear && exec env ZSH_GREETER_SHOWN=1 spotify_player ;;
+   q) exit ;;
+   *)
+      tput cup "$prompt_line" 0
+      tput el
+      ;;
+   esac
+done

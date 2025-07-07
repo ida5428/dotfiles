@@ -2,16 +2,17 @@
 tap "mhaeuser/mhaeuser"
 
 # --- Command-line tools ---
-brew "java"
+brew "spotify_player"
 brew "neovim"
+brew "java"
 brew "yazi"
 brew "git"
 brew "gh"
 brew "duti"
 brew "fish"
 brew "starship"
-brew "zsh-syntax-highlighting"
 brew "zsh-autosuggestions"
+brew "zsh-syntax-highlighting"
 # brew "mas"
 
 # --- Media & Audio ---
@@ -40,8 +41,8 @@ cask "git-credential-manager"
 
 # --- Keyboard & Window Management ---
 cask "leader-key"
-cask "alt-tab"
-cask "macmediakeyforwarder"
+# cask "alt-tab"
+# cask "macmediakeyforwarder"
 
 # --- Mac App Store Apps ---
 # mas "Dropover", id: 1355679052

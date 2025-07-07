@@ -1,7 +1,4 @@
-set -U fish_user_paths $HOME/.config $fish_user_paths
-
 if test "$TERM_PROGRAM" = ghostty
-    bonjour
     pokemon_sprite
 end
 

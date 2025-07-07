@@ -6,8 +6,10 @@ window-padding-x = 18
 window-padding-y = 0
 window-padding-balance = true
 window-padding-color = extend
+window-position-x = 172
+window-position-y = 76
 
-background-opacity = 0.8
+background-opacity = 0.9
 background-blur-radius = 20
 macos-titlebar-style = hidden
 
