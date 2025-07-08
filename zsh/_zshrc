@@ -39,9 +39,9 @@ export VISUAL=nvim
 if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
    if [[ -z "$ZSH_GREETER_SHOWN" ]]; then
       export ZSH_GREETER_SHOWN=1
-      source .config/zsh/bonjour
+      source ~/.config/zsh/bonjour
    fi
 
-   source .config/zsh/pokemon_sprite
+   source ~/.config/zsh/pokemon_sprite
    pokemon_sprite
 fi

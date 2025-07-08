@@ -35,12 +35,6 @@ brew bundle
 ---
 ---
 # App Config
-## Leader Key
-### Set config directory to:
-```zsh
-~/.config/leader_key/
-```
----
 ## Zed
 ### Extensions:
 - Catppuccin Blur Theme (Mocha)
@@ -80,20 +74,17 @@ done
 # Ghostty
 ```zsh
 touch .hushlogin
-```
 
-```zsh
 sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+
+chmod +x ~/.config/zsh/bonjour
+chmod +x ~/.config/zsh/pokemon_sprite
 ```
 ---
 ## `fish`
-### Add `fish` to `shell` directory and change shell:
+### Add `fish` to `shell` directory:
 ```zsh
 sudo sh -c 'echo /opt/homebrew/bin/fish >> /etc/shells'
-```
-
-```zsh
-chsh -s "$(which fish)"
 ```
 ## Neovim
 ### Install `LazyVim`:

@@ -30,7 +30,6 @@ center "$(printf "  \033[1;92m$USER\033[0m")"
 echo ""
 center "$(printf "  \033[0;95mfish\033[0m \033[0;96m[:f]\033[0m     \033[0;95mneovim\033[0m \033[0;96m[:nv]\033[0m")"
 center "$(printf "  \033[0;95mzsh \033[0m \033[0;96m[:z]\033[0m    󰇥 \033[0;95myazi  \033[0m \033[0;96m[:yz]\033[0m")"
-center "$(printf " 󰓇 \033[0;95mspotify\033[0m \033[0;96m[:sp]\033[0m")"
 
 # Input loop
 while true; do
@@ -45,7 +44,6 @@ while true; do
    z) clear && exec env ZSH_GREETER_SHOWN=1 zsh ;;
    nv) clear && exec env ZSH_GREETER_SHOWN=1 nvim ;;
    yz) clear && exec env ZSH_GREETER_SHOWN=1 yazi ;;
-   sp) clear && exec env ZSH_GREETER_SHOWN=1 spotify_player ;;
    q) exit ;;
    *)
       tput cup "$prompt_line" 0
