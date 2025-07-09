@@ -37,7 +37,11 @@ starship init fish | source
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Aliases
-alias dev="cd Developer && ls -1"
+alias dev="cd ~/Developer"
+alias devl="cd ~/Developer && ls -1"
+alias code="open -a Visual\ Studio\ Code ."
+alias zed="open -a Zed ."
 
+# Set default editor to Neovim
 set -Ux EDITOR nvim
 set -Ux VISUAL nvim

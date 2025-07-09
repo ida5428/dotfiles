@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-# Centered text printer
+# --- Helper Functions ---
 center() {
    local text="$1"
    local termwidth=$(tput cols)
@@ -9,7 +9,6 @@ center() {
    printf "%*s%s\n" "$padding" "" "$text"
 }
 
-# Vertical padding
 vpad() {
    local lines="$1"
    local height=$(tput lines)
@@ -17,37 +16,38 @@ vpad() {
    for _ in $(seq 1 "$padding"); do echo ""; done
 }
 
-clear
-vpad 9
-center "$(printf "\033[1;35m██╗██████╗                  █████╗ \033[0m")"
-center "$(printf "\033[1;35m██║██╔══██╗                ██╔══██╗\033[0m")"
-center "$(printf "\033[1;35m██║██║  ██║                ███████║\033[0m")"
-center "$(printf "\033[1;35m██║██║  ██║                ██╔══██║\033[0m")"
-center "$(printf "\033[1;35m██║██████╔╝███████╗███████╗██║  ██║\033[0m")"
-center "$(printf "\033[1;35m╚═╝╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝\033[0m")"
-echo ""
-center "$(printf "  \033[1;92m$USER\033[0m")"
-echo ""
-center "$(printf "  \033[0;95mfish\033[0m \033[0;96m[:f]\033[0m     \033[0;95mneovim\033[0m \033[0;96m[:nv]\033[0m")"
-center "$(printf "  \033[0;95mzsh \033[0m \033[0;96m[:z]\033[0m    󰇥 \033[0;95myazi  \033[0m \033[0;96m[:yz]\033[0m")"
+show_greeter() {
+   clear
+   vpad 9
+   center "$(printf "\033[1;35m██╗██████╗                  █████╗ \033[0m")"
+   center "$(printf "\033[1;35m██║██╔══██╗                ██╔══██╗\033[0m")"
+   center "$(printf "\033[1;35m██║██║  ██║                ███████║\033[0m")"
+   center "$(printf "\033[1;35m██║██║  ██║                ██╔══██║\033[0m")"
+   center "$(printf "\033[1;35m██║██████╔╝███████╗███████╗██║  ██║\033[0m")"
+   center "$(printf "\033[1;35m╚═╝╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝\033[0m")"
+   echo ""
+   center "$(printf "  \033[1;92m$USER\033[0m")"
+   echo ""
+   center "$(printf "  \033[0;95mfish\033[0m \033[0;96m[:f]\033[0m     \033[0;95mneovim\033[0m \033[0;96m[:nv]\033[0m")"
+   center "$(printf "  \033[0;95mzsh \033[0m \033[0;96m[:z]\033[0m    󰇥 \033[0;95myazi  \033[0m \033[0;96m[:yz]\033[0m")"
+   echo ""
+}
 
-# Input loop
-while true; do
-   prompt_line=$(($(tput lines) - 2))
-   tput cup "$prompt_line" 0
+prompt_command() {
+   show_greeter
+   tput cup "$(($(tput lines) - 2))" 0
    tput el
    printf ": "
    read -r input
 
    case "$input" in
-   f) clear && exec env ZSH_GREETER_SHOWN=1 fish ;;
-   z) clear && exec env ZSH_GREETER_SHOWN=1 zsh ;;
-   nv) clear && exec env ZSH_GREETER_SHOWN=1 nvim ;;
-   yz) clear && exec env ZSH_GREETER_SHOWN=1 yazi ;;
-   q) exit ;;
-   *)
-      tput cup "$prompt_line" 0
-      tput el
-      ;;
+      f) clear && exec env ZSH_GREETER_SHOWN=1 fish ;;
+      z) clear && exec env ZSH_GREETER_SHOWN=1 zsh ;;
+      nv) clear && exec env ZSH_GREETER_SHOWN=1 nvim ;;
+      yz) clear && exec env ZSH_GREETER_SHOWN=1 yazi ;;
+      q) exit ;;
+      *) prompt_command ;;
    esac
-done
+}
+
+prompt_command
