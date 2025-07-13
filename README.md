@@ -24,9 +24,9 @@ defaults write -g ApplePressAndHoldEnabled -bool false
 ```
 ### Create `Brewfile` at root:
 ```zsh
-echo "
+echo '
 [Brewfile Content]
-" > Brewfile
+' > Brewfile
 ```
 ### Install everything with:
 ```zsh
@@ -39,6 +39,7 @@ brew bundle
 ### Extensions:
 - Catppuccin Blur Theme (Mocha)
 - Catppuccin Icons (Mocha)
+- Java
 ### Run script in `zsh`:
 ```zsh
 for uti in \
@@ -71,7 +72,8 @@ done
 - IntelliCode + API Examples
 - Material Icon Theme
 ---
-# Ghostty
+## Ghostty
+### Run commands:
 ```zsh
 touch .hushlogin
 
@@ -80,20 +82,3 @@ sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVir
 chmod +x ~/.config/zsh/bonjour
 chmod +x ~/.config/zsh/pokemon_sprite
 ```
----
-## `fish`
-### Add `fish` to `shell` directory:
-```zsh
-sudo sh -c 'echo /opt/homebrew/bin/fish >> /etc/shells'
-```
-## Neovim
-### Install `LazyVim`:
-```zsh
-git clone https://github.com/LazyVim/starter ~/.config/nvim
-```
-### Remove files at:
-```zsh
-~/.config/nvim/
-```
----
----
