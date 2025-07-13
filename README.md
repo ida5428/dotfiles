@@ -81,4 +81,9 @@ sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVir
 
 chmod +x ~/.config/zsh/bonjour
 chmod +x ~/.config/zsh/pokemon_sprite
+
+git config --global user.name "--"
+git config --global user.email --@gmail.com
+
+git-credential-manager github login
 ```
