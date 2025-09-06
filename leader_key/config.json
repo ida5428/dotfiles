@@ -1,157 +1,90 @@
 {
   "actions" : [
     {
-      "actions" : [
-        {
-          "key" : "f",
-          "label" : "Fullscreen",
-          "type" : "url",
-          "value" : "raycast://extensions/raycast/window-management/maximize"
-        },
-        {
-          "key" : "c",
-          "label" : "Center",
-          "type" : "url",
-          "value" : "raycast://extensions/raycast/window-management/center"
-        },
-        {
-          "key" : "x",
-          "label" : "Resize",
-          "type" : "url",
-          "value" : "raycast://extensions/raycast/window-management/almost-maximize"
-        },
-        {
-          "key" : "←",
-          "label" : "Left",
-          "type" : "url",
-          "value" : "raycast://extensions/raycast/window-management/left-half"
-        },
-        {
-          "key" : "→",
-          "label" : "Right",
-          "type" : "url",
-          "value" : "raycast://extensions/raycast/window-management/right-half"
-        },
-        {
-          "key" : "=",
-          "label" : "Larger",
-          "type" : "url",
-          "value" : "raycast://extensions/raycast/window-management/make-larger"
-        },
-        {
-          "key" : "-",
-          "label" : "Smaller",
-          "type" : "url",
-          "value" : "raycast://extensions/raycast/window-management/make-smaller"
-        }
-      ],
-      "key" : "w",
-      "label" : "Window",
-      "type" : "group"
-    },
-    {
-      "key" : "e",
-      "label" : "Emoji",
-      "type" : "url",
-      "value" : "raycast://extensions/raycast/emoji-symbols/search-emoji-symbols"
-    },
-    {
-      "key" : "c",
+      "key" : "C",
       "label" : "Confetti",
       "type" : "url",
       "value" : "raycast://confetti"
     },
     {
-      "key" : "f",
-      "label" : "Finder",
-      "type" : "folder",
-      "value" : "/Users/adityaverma"
-    },
-    {
-      "key" : "A",
-      "label" : "Arc",
-      "type" : "application",
-      "value" : "/Applications/Arc.app"
-    },
-    {
-      "key" : "G",
-      "label" : "Ghostty",
-      "type" : "application",
-      "value" : "/Applications/Ghostty.app"
-    },
-    {
       "actions" : [
         {
-          "key" : "d",
-          "label" : "Open Directory",
-          "type" : "url",
-          "value" : "raycast://extensions/yedongze/terminalfinder/finderToGhostty"
+          "key" : "z",
+          "label" : "Zen",
+          "type" : "application",
+          "value" : "/Applications/Zen.app"
+        },
+        {
+          "key" : "g",
+          "label" : "Ghostty",
+          "type" : "application",
+          "value" : "/Applications/Ghostty.app"
+        },
+        {
+          "key" : "s",
+          "label" : "Spotify",
+          "type" : "application",
+          "value" : "/Applications/Spotify.app"
         },
         {
           "key" : "f",
-          "label" : "Open in Finder",
-          "type" : "url",
-          "value" : "raycast://extensions/yedongze/terminalfinder/ghosttyToFinder"
+          "label" : "Finder",
+          "type" : "folder",
+          "value" : "/Users/adityaverma"
         }
       ],
-      "key" : "g",
-      "label" : "Ghostty",
+      "key" : "a",
+      "label" : "Apps",
       "type" : "group"
-    },
-    {
-      "key" : "O",
-      "label" : "Obsidian",
-      "type" : "application",
-      "value" : "/Applications/Obsidian.app"
-    },
-    {
-      "key" : "V",
-      "label" : "VS Code",
-      "type" : "application",
-      "value" : "/Applications/Visual Studio Code.app"
     },
     {
       "actions" : [
         {
-          "key" : "o",
-          "label" : "Open",
-          "type" : "url",
-          "value" : "raycast://extensions/thomas/visual-studio-code/open-with-vscode"
+          "key" : " ",
+          "label" : "Play",
+          "type" : "command",
+          "value" : "osascript -e 'tell application \"Spotify\" to playpause'"
         },
         {
-          "key" : "p",
-          "label" : "Projects",
-          "type" : "url",
-          "value" : "raycast://extensions/thomas/visual-studio-code/index"
+          "key" : "h",
+          "label" : "Prev",
+          "type" : "command",
+          "value" : "osascript -e 'tell application \"Spotify\" to previous track'"
+        },
+        {
+          "key" : "l",
+          "label" : "Next",
+          "type" : "command",
+          "value" : "osascript -e 'tell application \"Spotify\" to next track'"
         }
       ],
-      "key" : "v",
-      "label" : "VS Code",
+      "key" : "s",
+      "label" : "Spotify",
       "type" : "group"
-    },
-    {
-      "key" : "Z",
-      "label" : "Zed",
-      "type" : "application",
-      "value" : "/Applications/Zed.app"
     },
     {
       "actions" : [
         {
-          "key" : "o",
-          "label" : "Open",
+          "key" : "r",
+          "label" : "Recent",
           "type" : "url",
-          "value" : "raycast://extensions/ewgenius/zed-recent-projects/open"
+          "value" : "raycast://extensions/raycast/screenshots/search-screenshots"
         },
         {
-          "key" : "p",
-          "label" : "Projects",
+          "key" : "a",
+          "label" : "Area",
           "type" : "url",
-          "value" : "raycast://extensions/ewgenius/zed-recent-projects/search"
+          "value" : "shottr://grab/area"
+        },
+        {
+          "key" : "f",
+          "label" : "Full",
+          "type" : "url",
+          "value" : "shottr://grab/fullscreen"
         }
       ],
-      "key" : "z",
-      "label" : "Zed",
+      "key" : "c",
+      "label" : "Capture",
       "type" : "group"
     }
   ],

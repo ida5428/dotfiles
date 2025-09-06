@@ -1,0 +1,4 @@
+[status]
+sep_left = { open = "", close = "\uE0B4" }
+sep_right = { open = "\uE0B6", close = "" }
+

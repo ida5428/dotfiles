@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+source "$CONFIG_DIR/colors.sh"
+source "$CONFIG_DIR/icons.sh"
+
+ITEM_DIR="$CONFIG_DIR/items"
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+
+FONT="JetBrainsMonoNL Nerd Font Mono"
+PADDINGS=3
+
+# aerospace setting
+AEROSPACE_FOCUSED_MONITOR_NO=$(aerospace list-workspaces --focused)
+AEROSPACE_LIST_OF_WINDOWS_IN_FOCUSED_MONITOR=$(aerospace list-windows --workspace $AEROSPACE_FOCUSED_MONITOR_NO | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
+
+# Setting up the general bar appearance of the bar
+bar=(
+   height=34
+   color=$BAR_COLOR
+   border_width=2
+   border_color=$BAR_BORDER_COLOR
+   position=top
+   padding_right=2
+   padding_left=2
+   y_offset=4
+   margin=4
+   corner_radius=100
+   blur_radius=40
+)
+
+sketchybar --bar "${bar[@]}"
+
+# Setting up default values
+defaults=(
+   updates=when_shown
+   icon.font="$FONT:Bold:14.0"
+   icon.color=$ICON_COLOR
+   icon.padding_left=$PADDINS
+   icon.padding_right=$PADDINGS
+   label.font="$FONT:Bold:14.0"
+   label.color=$LABEL_COLOR
+   label.padding_left=$PADDINGS
+   label.padding_right=$PADDINGS
+   padding_right=$PADDINGS
+   padding_left=$PADDINGS
+   background.height=26
+   background.corner_radius=10000
+   background.border_width=1
+)
+
+sketchybar --default "${defaults[@]}"
+
+# Left
+source "$ITEM_DIR/spaces.sh"
+
+# Right
+source "$ITEM_DIR/calendar.sh"
+source "$ITEM_DIR/battery.sh"
+
+sketchybar --hotload on
+sketchybar --update
+

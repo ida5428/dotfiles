@@ -1,0 +1,47 @@
+#!/usr/bin/env zsh
+
+# ----------------------------------------------------------------------
+# [[ -f "$HOME/.config/zsh/zshrc" ]] && source "$HOME/.config/zsh/zshrc"
+# ----------------------------------------------------------------------
+
+export EDITOR=nvim
+export VISUAL=nvim
+export MANPAGER="nvim +Man!"
+export XDG_CONFIG_HOME="$HOME/.config"
+export SCRIPTS_DIR="$XDG_CONFIG_HOME/scripts"
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
+export FZF_DEFAULT_OPTS="--prompt=\": \" --reverse --preview='echo {}' --preview-window=up:1 --no-mouse --bind change:top --border=rounded --style=full"
+
+if [[ "$TERM_PROGRAM" == "tmux" || "$TERM_PROGRAM" == "ghostty" ]]; then
+   [[ -o login ]] && source "$SCRIPTS_DIR/bonjour.sh"
+   "$SCRIPTS_DIR/pokemon_sprite.sh"
+fi
+
+setopt AUTO_CD AUTO_PUSHD CORRECT NO_CASE_GLOB HIST_IGNORE_DUPS
+
+function handle-enter-or-reset-prompt() {
+   local input=${BUFFER}
+   if [[ -z "${input//[[:space:]]/}" ]]; then
+      zle reset-prompt
+      BUFFER=""
+      CURSOR=0
+   else
+      zle accept-line
+   fi
+}
+zle -N handle-enter-or-reset-prompt
+bindkey '^M' handle-enter-or-reset-prompt
+bindkey '^m' handle-enter-or-reset-prompt
+
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^e' edit-command-line
+
+eval "$(starship init zsh)"
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
+
+# export PYENV_ROOT="$HOME/.pyenv"
+# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init - zsh)"

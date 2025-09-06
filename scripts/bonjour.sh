@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+center() {
+   local text="$1"
+   local termwidth=$(tput cols)
+   local clean_text=$(echo -e "$text" | sed 's/\x1b\[[0-9;]*m//g')
+   local padding=$(((termwidth - ${#clean_text}) / 2))
+   printf "%*s%s\n" "$padding" "" "$text"
+}
+
+vpad() {
+   local lines="$1"
+   local height=$(tput lines)
+   local padding=$(((height - lines - 2) / 2))
+   for _ in $(seq 1 "$padding"); do echo ""; done
+}
+
+show_greeter() {
+   tput smcup
+   clear
+   vpad 9
+   echo -e "\033[1;35m"
+   center "$(echo -e "██╗██████╗                  █████╗ ")"
+   center "$(echo -e "██║██╔══██╗                ██╔══██╗")"
+   center "$(echo -e "██║██║  ██║                ███████║")"
+   center "$(echo -e "██║██║  ██║                ██╔══██║")"
+   center "$(echo -e "██║██████╔╝███████╗███████╗██║  ██║")"
+   center "$(echo -e "╚═╝╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝")"
+   echo
+   center "$(printf "\033[0m \033[1;92m$USER\033[0m")"
+   echo
+   center "$(echo -e " \033[0;95mfish    \033[0;96m[:f]\033[0m     \033[0;95mneovim   \033[0;96m[:n]\033[0m")"
+   center "$(echo -e " \033[0;95mzsh     \033[0;96m[:z]\033[0m    󰇥 \033[0;95myazi     \033[0;96m[:y]\033[0m")"
+   center "$(echo -e " \033[0;95mrayterm \033[0;96m[:r]\033[0m     \033[0;95mtmux     \033[0;96m[:t]\033[0m")"
+   center "$(echo -e "󰓇 \033[0;95mspotify \033[0;96m[:s]\033[0m     \033[0;95mman-page \033[0;96m[:m]\033[0m")"
+}
+
+prompt_command() {
+   local prompt_row=$(( $(tput lines) - 2 ))
+   tput cup "$prompt_row" 0
+   tput el
+   printf ": "
+   read -r input
+
+   case "$input" in
+      f|F) tput rmcup; exec fish ;;
+      z|Z) tput rmcup; exec zsh ;;
+      r|R) tput rmcup; exec "$SCRIPTS_DIR/rayterm.sh" ;;
+      s|S) tput rmcup; exec spotify_player ;;
+      n|N) tput rmcup; exec nvim ;;
+      y|Y) tput rmcup; exec env NEOVIM_YAZI=1 yazi ;;
+      m|M) tput rmcup; exec "$SCRIPTS_DIR/man_pager.sh" ;;
+      t|T) tput rmcup; exec tmux attach -t main ;;
+      q|Q) tput rmcup; exit ;;
+      *)   prompt_command ;;
+   esac
+}
+
+sleep 0.05
+show_greeter
+prompt_command
+

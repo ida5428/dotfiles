@@ -8,14 +8,13 @@ $git_branch\
 $git_state\
 $git_status\
 $java\
-$cpp\
-$nodejs\n\
+$cpp\n\
 $character"""
 
 [shell]
 disabled = false
 format = 'on [$indicator]($style) | '
-zsh_indicator = '[zsh ](purple)'
+zsh_indicator = '[zsh](purple)'
 fish_indicator = '[fish](cyan)'
 
 [directory]
@@ -28,6 +27,7 @@ truncate_to_repo = false
 
 [fill]
 symbol = ' '
+style = 'bold white'
 
 [git_branch]
 disabled = false
@@ -44,5 +44,3 @@ disabled = false
 [java]
 disabled = false
 
-[nodejs]
-disabled = false
