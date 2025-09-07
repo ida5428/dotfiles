@@ -4,7 +4,10 @@ if status is-interactive
    end
 
    function fish_user_key_bindings
-      bind \r __handle_enter
+      bind --user -e \r
+      bind --user -M insert -e \r
+      bind --user \r __handle_enter
+      bind --user -M insert \r __handle_enter
    end
 
    function __handle_enter
@@ -12,11 +15,19 @@ if status is-interactive
       set -l trimmed (string trim -- "$line")
 
       if test -z "$trimmed"
+         set -g TRANSIENT 0
          commandline -f repaint
          commandline --replace ''
       else
+         set -g TRANSIENT 1
+         commandline -f repaint
          commandline -f execute
       end
+   end
+
+   function starship_transient_prompt_func
+      echo
+      starship module character
    end
 
    starship init fish | source

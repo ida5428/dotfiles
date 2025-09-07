@@ -18,7 +18,7 @@ zsh_indicator = '[zsh](purple)'
 fish_indicator = '[fish](cyan)'
 
 [directory]
-truncate_to_repo = false
+truncate_to_repo = true
 
 [directory.substitutions]
 "Documents" = "Docs."
