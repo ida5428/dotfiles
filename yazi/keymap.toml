@@ -1,6 +1,6 @@
 [[mgr.append_keymap]]
 on = [ "c", "i" ]
-run = "shell '~/.config/scripts/zsh/copy_image \"$0\"'"
+run = "shell '~/.config/scripts/copy_image.sh \"$0\"'"
 desc = "Copy hovered image to clipboard"
 
 [[mgr.append_keymap]]
