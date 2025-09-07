@@ -48,7 +48,7 @@ EOF
 launchctl load "$HOME/Library/LaunchAgents/com.forceinput.plist"
 
 echo -e "\n${CYAN}Run the following command to stop the LaunchAgent:${RESET}"
-echo -e "\tlaunchctl unload $HOME/Library/LaunchAgents/com.forceinput.plist"
+echo -e "\t${YELLOW}launchctl unload $HOME/Library/LaunchAgents/com.forceinput.plist${RESET}"
 
 echo -e "\n${CYAN}Run the following commands to configure Git...${RESET}"
 echo -en "${YELLOW}"
@@ -57,7 +57,7 @@ cat <<'EOF'
 
         git config --global user.name "ida5428"
         git config --global user.email "207427661+ida5428@users.noreply.github.com"
-        git config --global user.signingkey ~/.ssh/id_ed25519.pub
+        git config --global user.signingkey $HOME/.ssh/id_ed25519
 
         git config --global gpg.format ssh
         git config --global commit.gpgsign true
@@ -67,9 +67,7 @@ EOF
 echo -en "${RESET}"
 
 echo -e "\n${CYAN}Run the following command to symlink openJDK-21:${RESET}"
-echo -en "${YELLOW}"
-echo -e "\tsudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk@21.jdk /Library/Java/JavaVirtualMachines/openjdk-21.jdk"
-echo -en "${RESET}"
+echo -e "\t${YELLOW}sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk@21.jdk /Library/Java/JavaVirtualMachines/openjdk-21.jdk${RESET}"
 
 echo -e "\n${CYAN}Run the following command to set Zed as the default editor:${RESET}"
 echo -en "${YELLOW}"
