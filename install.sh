@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Exit immediately if any command fails
+set -e
+
 CYAN='\033[1;36m'
 YELLOW='\033[93m'
 RESET='\033[0m'
