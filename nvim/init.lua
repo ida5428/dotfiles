@@ -85,7 +85,7 @@ vim.pack.add({
    { src = "https://github.com/vague2k/vague.nvim" },
    { src = "https://github.com/echasnovski/mini.nvim" },
    { src = "https://github.com/stevearc/oil.nvim" },
-   { src = "https://github.com/lukas-reineke/headlines.nvim" },
+   { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
    { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
    { src = "https://github.com/nvim-lualine/lualine.nvim" },
    { src = "https://github.com/karb94/neoscroll.nvim" },
@@ -114,9 +114,14 @@ require('mini.indentscope').setup()
 -- =========================
 -- Extra Plugins Setup
 -- =========================
-require("headlines").setup()
+require('render-markdown').setup({
+    completions = { lsp = { enabled = true } },
+})
 require("oil").setup({
    delete_to_trash = true,
+   view_options = {
+      show_hidden = true,
+   }
 })
 require("tiny-inline-diagnostic").setup()
 
