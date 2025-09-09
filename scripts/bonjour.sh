@@ -27,7 +27,7 @@ show_greeter() {
    center "$(echo -e "██║██████╔╝███████╗███████╗██║  ██║")"
    center "$(echo -e "╚═╝╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝")"
    echo
-   center "$(printf "\033[0m \033[1;92m$USER\033[0m")"
+   center "$(echo -e "\033[0m \033[1;92m$USER\033[0m")"
    echo
    center "$(echo -e " \033[0;95mfish    \033[0;96m[:f]\033[0m     \033[0;95mneovim   \033[0;96m[:n]\033[0m")"
    center "$(echo -e " \033[0;95mzsh     \033[0;96m[:z]\033[0m    󰇥 \033[0;95myazi     \033[0;96m[:y]\033[0m")"
